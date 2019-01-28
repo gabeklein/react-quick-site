@@ -1,4 +1,4 @@
-const MyEntryMiddewarePlugin = require('webpack-initialize-entry');
+const WebpackIntermediateEntry = require('webpack-intermediate-entry');
 const webpack = require('webpack');
 const path = require('path');
 const loader = require('babel-loader');
@@ -71,7 +71,7 @@ let config = {
     : "none",
     
   plugins: [
-    new MyEntryMiddewarePlugin({ 
+    new WebpackIntermediateEntry({ 
       insert: path.join(__dirname, DEV ? 'entry.dev.js' : 'entry.prod.js' )
     }),
     new webpack.NamedModulesPlugin(),
