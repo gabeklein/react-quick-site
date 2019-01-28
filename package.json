@@ -1,6 +1,6 @@
 {
   "name": "react-quick-site",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Site tools plus a dev-server for React apps.",
   "bin": {
     "site": "./bin/cli.js"
