@@ -1,4 +1,4 @@
-const WebpackIntermediateEntry = require('webpack-intermediate-entry');
+const EntryPlugin = require('webpack-intermediate-entry');
 const webpack = require('webpack');
 const path = require('path');
 const loader = require('babel-loader');
@@ -9,39 +9,38 @@ const vendor = require("./vendor")
 const __cwd = program.cwd;
 
 const SOURCE = program.dir || './pages';
-const DEV = process.env.NODE_ENV === 'development' || process.env.NODE_ENV !== 'production' && program.args[0] !== "build";
-const HOT = 'webpack-hot-middleware/client?reload=true&__webpack_public_path=http://webpack:3000';
+
+let isDEV = false;
+
+if(process.env.NODE_ENV === 'development' || process.env.NODE_ENV !== 'production' && program.args[0] !== "build" )
+  isDEV = true;
+
 const OUTPUT = 'public';
 const EXTENDS = program.webpackExtends;
 
 const ENV_PLUGINS = [];
 
-if(DEV) ENV_PLUGINS.push(
-  new webpack.HotModuleReplacementPlugin()
-);
-
-if(program.vendor === true)
-  ENV_PLUGINS.push(
-    ...vendor.include
-  );
-
-//check pages folder and generate entry config based on that.
-function scanForEntry(DIR){
+function scanPageDirectoryForEntry(DIR){
   const PAGES = {};
   for(let name of fs.readdirSync(DIR)){
+    if(name[0] == ".")
+      continue
     name = path.resolve(DIR, name);
     if(fs.lstatSync(name).isDirectory()){
       const pageName = path.basename(name);
       const entry = path.join(__cwd, SOURCE, pageName, '/index.js')
-      PAGES[pageName] = DEV ? [HOT, entry] : entry
+      PAGES[pageName] = entry
     }
   }
+
   return PAGES;
 }
 
 let config = {
-  entry: scanForEntry(SOURCE),
+  entry: scanPageDirectoryForEntry(SOURCE),
   context: path.resolve(__cwd, './pages/'),
+  mode: "production",
+  devtool: "none",
 
   resolve: {
     modules: [
@@ -57,27 +56,18 @@ let config = {
   },
 
   output: {
-    filename: 'bundle.[name].js',
+    filename: 'page.[name].js',
     path: path.resolve(__cwd, OUTPUT),
     devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]'
   },
-
-  mode: DEV
-    ? 'development' 
-    : 'production',
-
-  devtool: DEV
-    ? "source-map" 
-    : "none",
-    
+  
   plugins: [
-    new WebpackIntermediateEntry({ 
-      insert: path.join(__dirname, DEV ? 'entry.dev.js' : 'entry.prod.js' )
+    new EntryPlugin({ 
+      insert: path.join(__dirname, isDEV ? 'entry.dev.js' : 'entry.prod.js' )
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.EnvironmentPlugin(process.env),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    ...ENV_PLUGINS
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
 
   module: {

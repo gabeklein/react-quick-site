@@ -210,6 +210,10 @@
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.3.1.tgz#8f4ffd45f779e6132780835ffa7a215fa0b2d181"
 
+"@babel/parser@^7.4.0":
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.4.3.tgz#eb3ac80f64aa101c907d4ce5406360fe75b7895b"
+
 "@babel/plugin-proposal-async-generator-functions@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-async-generator-functions/-/plugin-proposal-async-generator-functions-7.2.0.tgz#b289b306669dce4ad20b0252889a15768c9d417e"
@@ -593,6 +597,14 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@babel/template@^7.0.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.0.tgz#12474e9c077bae585c5d835a95c0b0b790c25c8b"
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/parser" "^7.4.0"
+    "@babel/types" "^7.4.0"
+
 "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.2.2.tgz#005b3fdf0ed96e88041330379e0da9a708eb2907"
@@ -623,36 +635,35 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@expressive/babel-plugin-react-class@^1.0.0-legacy.0":
-  version "1.0.0-legacy.0"
-  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-react-class/-/babel-plugin-react-class-1.0.0-legacy.0.tgz#911b74e4371547458681d02e75a606d47e317157"
+"@babel/types@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.4.0.tgz#670724f77d24cce6cc7d8cf64599d511d164894c"
   dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.11"
+    to-fast-properties "^2.0.0"
+
+"@expressive/babel-plugin-core@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-core/-/babel-plugin-core-1.0.0-beta.6.tgz#095b91e7a8af3188d3e2379254b825bc9f70e691"
+  dependencies:
+    "@babel/template" "^7.0.0"
     "@babel/types" "^7.0.0"
 
-"@expressive/babel-plugin-react-xjs@^1.0.0-legacy.3":
-  version "1.0.0-legacy.3"
-  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-react-xjs/-/babel-plugin-react-xjs-1.0.0-legacy.3.tgz#92e5e16986d8d1a77a1ce4904982aa781745897d"
+"@expressive/babel-plugin-react@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-react/-/babel-plugin-react-1.0.0-beta.6.tgz#00394ff194d1e3abfc3f9854e0fb9ac712b4f67c"
   dependencies:
-    "@babel/template" "^7.1.2"
+    "@babel/template" "^7.0.0"
     "@babel/types" "^7.0.0"
+    "@expressive/babel-plugin-core" "^1.0.0-beta.6"
 
-"@expressive/babel-preset-react@1.0.0-legacy.3":
-  version "1.0.0-legacy.3"
-  resolved "https://registry.yarnpkg.com/@expressive/babel-preset-react/-/babel-preset-react-1.0.0-legacy.3.tgz#c9eaa0ed449d804a4dc3ae30344179be34b005a9"
-  dependencies:
-    "@expressive/babel-plugin-react-class" "^1.0.0-legacy.0"
-    "@expressive/babel-plugin-react-xjs" "^1.0.0-legacy.3"
-    "@expressive/react-modifiers" "^1.0.0-legacy.2"
-    babel-preset-expressive-enhancements "^1.0.1"
-
-"@expressive/react-modifiers@^1.0.0-legacy.2":
-  version "1.0.0-legacy.2"
-  resolved "https://registry.yarnpkg.com/@expressive/react-modifiers/-/react-modifiers-1.0.0-legacy.2.tgz#0a1042e73493966c32c78ad209ec7cff2df0d963"
+"@expressive/react-modifiers@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@expressive/react-modifiers/-/react-modifiers-1.0.0-beta.6.tgz#f03e5bb388a14d93dd9be85da75e6d52adf31a34"
   dependencies:
     "@babel/types" "^7.0.0"
-    chroma-js "^2.0.2"
     dotenv "^6.0.0"
-    easing-coordinates "^2.0.2"
 
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
@@ -928,41 +939,6 @@ babel-plugin-module-resolver@^3.1.1:
     reselect "^3.0.1"
     resolve "^1.4.0"
 
-babel-plugin-transform-for-binding@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-for-binding/-/babel-plugin-transform-for-binding-1.2.0.tgz#c4cc7dfe2df14abcd8820413ca340545e364880a"
-  dependencies:
-    babel-types "^6.25.0"
-
-babel-plugin-transform-in-iterable@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-in-iterable/-/babel-plugin-transform-in-iterable-1.1.0.tgz#5582932354808b1b80633d645ace97da5c704921"
-  dependencies:
-    babel-types "^6.25.0"
-
-babel-preset-expressive-enhancements@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-expressive-enhancements/-/babel-preset-expressive-enhancements-1.0.1.tgz#6653f83b840077bc1b0e05efb83d681152fda417"
-  dependencies:
-    babel-plugin-transform-for-binding "^1.1.1"
-    babel-plugin-transform-in-iterable "^1.0.0"
-
-babel-runtime@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
-babel-types@^6.25.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-6.26.0.tgz#a3b073f94ab49eb6fa55cd65227a334380632497"
-  dependencies:
-    babel-runtime "^6.26.0"
-    esutils "^2.0.2"
-    lodash "^4.17.4"
-    to-fast-properties "^1.0.3"
-
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -1201,10 +1177,6 @@ chownr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.1.tgz#54726b8b8fff4df053c42187e801fb4412df1494"
 
-chroma-js@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.0.2.tgz#507bfe0e22da9c30673ffc4532c8ca6b4f2926db"
-
 chrome-trace-event@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/chrome-trace-event/-/chrome-trace-event-1.0.0.tgz#45a91bd2c20c9411f0963b5aaeb9a1b95e09cc48"
@@ -1348,10 +1320,6 @@ copy-concurrently@^1.0.0:
 copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
-
-core-js@^2.4.0:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.3.tgz#4b70938bdffdaf64931e66e2db158f0892289c49"
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -1531,10 +1499,6 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
-
-easing-coordinates@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/easing-coordinates/-/easing-coordinates-2.0.2.tgz#54e5a7f02762b18a0de33460495f6c90a4d0a6b8"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2401,7 +2365,7 @@ lodash.merge@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
 
-lodash@^4.17.10, lodash@^4.17.4:
+lodash@^4.17.10, lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
@@ -3155,10 +3119,6 @@ regenerate@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
 
-regenerator-runtime@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-
 regenerator-runtime@^0.12.0:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
@@ -3627,10 +3587,6 @@ timers-browserify@^2.0.4:
 to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
-
-to-fast-properties@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
 
 to-fast-properties@^2.0.0:
   version "2.0.0"

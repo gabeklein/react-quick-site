@@ -1,29 +1,37 @@
 
-//JS file instead of .babelrc (JSON) to compute environment and load specifics.
+const WebStyles = require("@expressive/react-modifiers");
 
-const isDEV = process.env.NODE_ENV !== 'production';
+//JS file instead of .babelrc (JSON) to compute environment and load specifics.
+const program = require("./cli")
+const isProd = program.args[0] === "build" || process.env.NODE_ENV === 'production';
 
 //import standard stuff like env and JSX
 //I simply include expressive-react as a plugin also.
 const presets = [
   ['@babel/env', {  modules: false }],
-  '@babel/react',
-  '@expressive/react'
+  '@babel/react'
 ];
 
 //default language features I'd use typically.
 const plugins = [
+  ['@babel/plugin-transform-runtime', {
+    corejs: false,
+    helpers: !isProd,
+    regenerator: true,
+    useESModules: false
+  }],
+
+  ["@expressive/babel-plugin-react", {
+    reactEnv: "next",
+    output: "js",
+    useRequire: true,
+    modifiers: [ WebStyles ]
+  }],
+
   '@babel/plugin-proposal-object-rest-spread',
   '@babel/plugin-proposal-class-properties',
   ['@babel/plugin-proposal-decorators', { 
     legacy: true 
-  }],
-  
-  ['@babel/plugin-transform-runtime', {
-    corejs: false,
-    helpers: isDEV,
-    regenerator: true,
-    useESModules: false
   }],
 
   //module resolve is great for avoiding ../../../ in import and requires.
@@ -38,7 +46,7 @@ const plugins = [
 ];
 
 //if not in a production setting, import HMR and helper functions.
-if(isDEV)
+if(!isProd)
   plugins.push(
     'react-hot-loader/babel'
   );

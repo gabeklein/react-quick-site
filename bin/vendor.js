@@ -14,6 +14,11 @@ const {
 
 const example = `\n  { "siteKit": { "bundleDependancies": { "bundle": [ ...dependancies: string[] ] } } }`;
 
+module.exports = {
+  get config(){ return configForBundle() },
+  get include(){ return configForInclude() }
+}
+
 function configForBundle(){
     const {
         output = "./public"
@@ -61,7 +66,6 @@ function configForBundle(){
 }
 
 function configForInclude(){
-    
     const {
         output = "./public"
     } = program;
@@ -96,6 +100,3 @@ function configForInclude(){
 
     return dllReferences;
 }
-
-Object.defineProperty(exports, "config", { get: configForBundle });
-Object.defineProperty(exports, "include", { get: configForInclude });

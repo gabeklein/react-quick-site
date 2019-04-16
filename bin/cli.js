@@ -4,6 +4,7 @@ const commander = require("commander");
 const webpack = require("webpack");
 const version = require('../package.json').version;
 const path = require("path");
+const fs = require('fs');
 
 const program = module.exports = commander
     .version(version)
@@ -48,35 +49,46 @@ switch(program.args[0]){
         break;
 
     case "build": {
-        const config = require("./config.webpack");
+        const config = Object.assign({}, require("./config.webpack"));
 
-        webpack(
-            config, (err, stats) => {
-                if(!err)
-                    console.log("Build files complete!")
+        if(program.vendor === true)
+            config.plugins.push(
+                ...vendor.include
+            )
 
-                const info = stats.toJson();
+        for(const lib of ["react", "react-dom"])
+            fs.copyFileSync(
+                path.resolve(__cwd, `node_modules/${lib}/umd/${lib}.production.min.js`),
+                path.resolve(__cwd, `public/${lib}.min.js`)
+            )
 
-                if (stats.hasErrors()) {
-                    info.errors.map(console.error);
-                }
-                
-                if (stats.hasWarnings()) {
-                    info.warnings.map(console.warn);
-                }
-            }
-        );
+        config.externals = {
+            "react": "React",
+            "react-dom": "ReactDOM"
+        }
+
+        webpack(config, (err, stats) => {
+            if(!err)
+                console.log("Build files complete!")
+
+            const info = stats.toJson();
+
+            if(stats.hasErrors())
+                info.errors.map(console.error);
+            
+            if(stats.hasWarnings())
+                info.warnings.map(console.warn);
+        });
     }   break;
 
     case "vendor": {
-        const config = require("./vendor").config; 
+        const config = vendor.config; 
 
-        webpack(
-            {}, (err, stats) => {
-                if(!err)
-                    console.log("Vendor files complete!")
-            }
-        );
+        webpack({}, (err, stats) => {
+            if(!err)
+                console.log("Vendor files complete!")
+        });
+        
     }   break;
 
     case undefined:
@@ -85,3 +97,5 @@ switch(program.args[0]){
     default: 
         program.error(`\nUnknown command "${program.args[0]}" provided! Run "site -h" for valid options.\n`);
 }
+
+const vendor = require("./vendor");
