@@ -597,14 +597,6 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/template@^7.0.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.0.tgz#12474e9c077bae585c5d835a95c0b0b790c25c8b"
-  dependencies:
-    "@babel/code-frame" "^7.0.0"
-    "@babel/parser" "^7.4.0"
-    "@babel/types" "^7.4.0"
-
 "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.2.2.tgz#005b3fdf0ed96e88041330379e0da9a708eb2907"
@@ -612,6 +604,14 @@
     "@babel/code-frame" "^7.0.0"
     "@babel/parser" "^7.2.2"
     "@babel/types" "^7.2.2"
+
+"@babel/template@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.0.tgz#12474e9c077bae585c5d835a95c0b0b790c25c8b"
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/parser" "^7.4.0"
+    "@babel/types" "^7.4.0"
 
 "@babel/traverse@^7.1.0", "@babel/traverse@^7.1.5", "@babel/traverse@^7.2.2", "@babel/traverse@^7.2.3":
   version "7.2.3"
@@ -643,24 +643,24 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@expressive/babel-plugin-core@^1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-core/-/babel-plugin-core-1.0.0-beta.6.tgz#095b91e7a8af3188d3e2379254b825bc9f70e691"
+"@expressive/babel-plugin-core@1.0.0-beta.7", "@expressive/babel-plugin-core@^1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-core/-/babel-plugin-core-1.0.0-beta.7.tgz#fc61f6b01b3fd596376149688b343880248096fa"
   dependencies:
-    "@babel/template" "^7.0.0"
-    "@babel/types" "^7.0.0"
+    "@babel/template" "^7.4.0"
+    "@babel/types" "^7.4.0"
 
-"@expressive/babel-plugin-react@^1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-react/-/babel-plugin-react-1.0.0-beta.6.tgz#00394ff194d1e3abfc3f9854e0fb9ac712b4f67c"
+"@expressive/babel-plugin-react@1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@expressive/babel-plugin-react/-/babel-plugin-react-1.0.0-beta.7.tgz#b81b6fd95011ecae9a1f99d510a6dfd4335ffd1b"
   dependencies:
-    "@babel/template" "^7.0.0"
-    "@babel/types" "^7.0.0"
-    "@expressive/babel-plugin-core" "^1.0.0-beta.6"
+    "@babel/template" "^7.4.0"
+    "@babel/types" "^7.4.0"
+    "@expressive/babel-plugin-core" "^1.0.0-beta.7"
 
-"@expressive/react-modifiers@^1.0.0-beta.6":
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@expressive/react-modifiers/-/react-modifiers-1.0.0-beta.6.tgz#f03e5bb388a14d93dd9be85da75e6d52adf31a34"
+"@expressive/react-modifiers@1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@expressive/react-modifiers/-/react-modifiers-1.0.0-beta.7.tgz#8185e134bc894f037445cbcaa1db2a91aff1a92b"
   dependencies:
     "@babel/types" "^7.0.0"
     dotenv "^6.0.0"
